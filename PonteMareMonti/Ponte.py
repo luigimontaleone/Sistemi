@@ -10,20 +10,26 @@ class Ponte:
         self.numAttesaMareMontagna = 0
         self.numAttesaMontagnaMare = 0
         self.queueAuto = list()
+        self.queueEntrataMare = list()
+        self.queueEntrataMontagna = list()
         self.numMax = n
     def attraversaMareMontagna(self, name):
         with self.lock:
+            self.queueEntrataMare.append(name)
             self.numAttesaMareMontagna += 1
-            while self.occupatoMontagnaMare or self.numAttesaMontagnaMare > 3 or len(self.queueAuto) == self.numMax:
+            while self.occupatoMontagnaMare or self.numAttesaMontagnaMare > 3 or len(self.queueAuto) == self.numMax or self.queueEntrataMare[0] != name:
                 self.conditionMareMontagna.wait()
+            self.queueEntrataMare.pop(0)
             self.queueAuto.append(name)
             print(self.queueAuto)
             self.occupatoMareMontagna = True
     def attraversaMontagnaMare(self, name):
         with self.lock:
+            self.queueEntrataMontagna = list()
             self.numAttesaMontagnaMare += 1
-            while self.occupatoMareMontagna or self.numAttesaMareMontagna > 3 or len(self.queueAuto) == self.numMax:
+            while self.occupatoMareMontagna or self.numAttesaMareMontagna > 3 or len(self.queueAuto) == self.numMax or self.queueEntrataMontagna[0] != name:
                 self.conditionMontagnaMare.wait()
+            self.queueEntrataMontagna.pop(0)
             self.queueAuto.append(name)
             print(self.queueAuto)
             self.occupatoMontagnaMare = True

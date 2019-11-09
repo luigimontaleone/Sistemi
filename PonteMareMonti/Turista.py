@@ -8,10 +8,11 @@ class Turista(Thread):
         self.ponte = p
     def run(self):
         #while True:
-        direzione = randint(0, 2)
+        direzione = 0#randint(0, 2)
         if direzione == 0:
             print(f"{self.name} VUOLE ANDARE dal mare alla montagna")
             self.ponte.attraversaMareMontagna(self.name)
+            print(f"{self.name} STA ATTRAVERSANDO dal mare alla montagna")
             sleep(random())
             self.ponte.attraversatoMareMontagna(self.name)
             print(f"{self.name} HA ATTRAVERSATO dal mare alla montagna")
