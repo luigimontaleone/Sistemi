@@ -7,17 +7,17 @@ class Turista(Thread):
         super().__init__()
         self.ponte = p
     def run(self):
-        while True:
-            direzione = randint(0, 2)
-            if direzione == 0:
-                print(f"il turista {self.name} vuole andare dal mare alla montagna")
-                self.ponte.attraversaMareMontagna()
-                sleep(random())
-                print(f"il turista {self.name} ha attraversato dal mare alla montagna")
-                self.ponte.attraversatoMareMontagna()
-            elif direzione == 1:
-                print(f"il turista {self.name} vuole andare dalla montagna al mare")
-                self.ponte.attraversaMontagnaMare()
-                sleep(random())
-                print(f"il turista {self.name} ha attraversato dalla montagna al mare")
-                self.ponte.attraversatoMontagnaMare()
+        #while True:
+        direzione = randint(0, 2)
+        if direzione == 0:
+            print(f"{self.name} VUOLE ANDARE dal mare alla montagna")
+            self.ponte.attraversaMareMontagna(self.name)
+            sleep(random())
+            self.ponte.attraversatoMareMontagna(self.name)
+            print(f"{self.name} HA ATTRAVERSATO dal mare alla montagna")
+        elif direzione == 1:
+            print(f"{self.name} VUOLE ANDARE dalla montagna al mare")
+            self.ponte.attraversaMontagnaMare(self.name)
+            sleep(random())
+            self.ponte.attraversatoMontagnaMare(self.name)
+            print(f"{self.name} HA ATTRAVERSATO dalla montagna al mare")
