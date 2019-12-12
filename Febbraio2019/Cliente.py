@@ -1,5 +1,6 @@
 from threading import Thread
 from Sede import Sede
+from time import sleep
 class Cliente(Thread):
     def __init__(self, sede : Sede, uff):
         super().__init__()
@@ -8,4 +9,5 @@ class Cliente(Thread):
     def run(self):
         while True:
             ticket = self.sede.prendiTicket(self.uff)
-            print(f"Il CLIENTE {self.name} ha ricevuto il ticket {ticket}")
+            #print(f"Il CLIENTE {self.name} ha ricevuto il ticket {ticket}")
+            sleep(1)

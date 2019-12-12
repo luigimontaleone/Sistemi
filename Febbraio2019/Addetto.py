@@ -8,3 +8,4 @@ class Addetto(Thread):
     def run(self):
         while True:
             self.sede.chiamaTicket(self.uff)
+            
