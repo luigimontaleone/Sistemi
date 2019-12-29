@@ -14,10 +14,13 @@ class CLock:
         with self.lock:
             if self.permessiMax != 0 and self.permessi + 1 <= self.permessiMax:
                 self.permessi += 1
-            self.condition.notifyAll()
+            self.condition.notify()
     def limita(self, n : int):
-        self.permessiMax = n
+        with self.lock:
+            self.permessiMax = n
     def getPermessi(self):
-        return self.permessi
+        with self.lock:
+            return self.permessi
     def getPermessiMax(self):
-        return self.permessiMax
+        with self.lock:
+            return self.permessiMax
