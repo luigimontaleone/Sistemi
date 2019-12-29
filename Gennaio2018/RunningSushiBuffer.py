@@ -32,4 +32,4 @@ class RunningSushiBuffer:
                     i -= 1
                 self.buffer[1] = temp
                 j -= 1
-	     self.condition.notifyAll()
+	        self.condition.notifyAll()
