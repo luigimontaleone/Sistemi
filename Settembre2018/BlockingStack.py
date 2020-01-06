@@ -11,7 +11,7 @@ class BlockingStack:
                 self.condition.wait()
             self.blockingStack.append(t)
             self.condition.notifyAll()
-    def take(self, t = 0):
+    def take(self, t = self.dim - 1):
         self.lock.acquire()
         while t not in self.blockingStack:
             self.condition.wait()
